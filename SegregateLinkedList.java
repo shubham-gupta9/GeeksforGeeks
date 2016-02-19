@@ -47,6 +47,26 @@ public class My {
            return;
        }
        Node temp = a;
+       
+       int c1=0;
+       int c2 =0;
+       while(temp!=null){
+           if((temp.data%2)==0){
+               c2++;
+           }
+           else{
+               c1++;
+           }
+           temp = temp.next;
+       }
+       
+       if(c1==0 || c2 ==0){
+           print(a);
+           return;
+       }
+       else{
+           
+       temp =a;
        Node prev = null;
        Node last = null;
        while(temp.next!=null){
@@ -87,6 +107,7 @@ public class My {
                
            }
        }
+       }
       print(a);
        
        
@@ -102,13 +123,13 @@ public class My {
     public static void main(String[] args){
         My m1 = new My();
         My m2= new My();
-        m1.head = new Node(8);
-        Node s2 = new Node(12);
-        Node s3 = new Node(10);
-        Node s4 = new Node(5);
-        Node s5 = new Node(4);
-        Node s6 = new Node(1);
-        Node s7 = new Node(6);
+        m1.head = new Node(1);
+        Node s2 = new Node(3);
+        Node s3 = new Node(5);
+        Node s4 = new Node(7);
+        Node s5 = new Node(9);
+        Node s6 = new Node(11);
+        Node s7 = new Node(4);
         
         
         m1.head.next = s2;
