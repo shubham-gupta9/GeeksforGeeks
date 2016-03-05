@@ -1,0 +1,27 @@
+theoph.dat <- read.fwf("http://www.stat.ufl.edu/~winner/sta6166/theoph.txt", 
+  width=c(8,8,8),
+col.names=c("subject", "drug", "clearance"))
+attach(theoph.dat)
+
+drug.f <- factor(drug)
+subject.f <- factor(subject)
+
+theoph1.rbd <- aov(clearance ~ subject.f + drug.f)
+summary(theoph1.rbd)
+TukeyHSD(theoph1.rbd, "drug.f")
+
+interaction.plot(subject.f,drug.f,clearance)
+
+theoph.res <- residuals(theoph1.rbd)
+
+hist(theoph.res)
+
+friedman.test(clearance ~ drug.f | subject.f)
+
+num.t <- max(drug); num.b <- max(subject)
+(mean.subject <- tapply(clearance,subject,mean)) 
+
+(SSB <- num.t*sum((mean.subject-mean(clearance))^2))
+(SSE <- sum(theoph.res^2))
+
+(RE.RBD.CR <- ((num.b-1)*SSB+num.b*(num.t-1)*SSE)/((num.b*num.t-1)*SSE))
